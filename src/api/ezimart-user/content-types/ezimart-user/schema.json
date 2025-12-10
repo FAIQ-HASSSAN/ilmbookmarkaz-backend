@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ezimart_users",
+  "info": {
+    "singularName": "ezimart-user",
+    "pluralName": "ezimart-users",
+    "displayName": "Ezimart User"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "password": {
+      "type": "password"
+    }
+  }
+}

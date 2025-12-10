@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_discount_discount_cards",
+  "info": {
+    "displayName": "discountCards"
+  },
+  "options": {},
+  "attributes": {
+    "itemsNumber": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "percentage": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

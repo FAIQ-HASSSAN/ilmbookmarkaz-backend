@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_product_bulk_card_details",
+  "info": {
+    "displayName": "bulkCardDetails"
+  },
+  "options": {},
+  "attributes": {
+    "quantity": {
+      "type": "string"
+    },
+    "discountPercentage": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
