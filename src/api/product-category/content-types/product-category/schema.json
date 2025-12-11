@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product-category",
     "pluralName": "product-categories",
-    "displayName": "productCategory"
+    "displayName": "Product Category"
   },
   "options": {
     "draftAndPublish": true
@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -21,15 +22,50 @@
     "description": {
       "type": "text"
     },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::product.product"
+      "target": "api::product.product",
+      "mappedBy": "category"
     },
     "discount": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::discount.discount"
+    },
+    "parentCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-category.product-category",
+      "inversedBy": "subcategories"
+    },
+    "subcategories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-category.product-category",
+      "mappedBy": "parentCategory"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

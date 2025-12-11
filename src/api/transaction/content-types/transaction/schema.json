@@ -1,0 +1,43 @@
+{
+    "kind": "collectionType",
+    "collectionName": "transactions",
+    "info": {
+        "singularName": "transaction",
+        "pluralName": "transactions",
+        "displayName": "Transaction"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "user": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::ezimart-user.ezimart-user"
+        },
+        "type": {
+            "type": "enumeration",
+            "enum": [
+                "purchase",
+                "topup",
+                "refund",
+                "cashback"
+            ],
+            "required": true
+        },
+        "amount": {
+            "type": "decimal",
+            "required": true
+        },
+        "description": {
+            "type": "string",
+            "required": true
+        },
+        "relatedOrder": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::order.order"
+        }
+    }
+}

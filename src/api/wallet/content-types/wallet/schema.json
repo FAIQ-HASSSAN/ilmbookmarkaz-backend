@@ -1,0 +1,28 @@
+{
+    "kind": "collectionType",
+    "collectionName": "wallets",
+    "info": {
+        "singularName": "wallet",
+        "pluralName": "wallets",
+        "displayName": "Wallet"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::ezimart-user.ezimart-user"
+        },
+        "balance": {
+            "type": "decimal",
+            "default": 0
+        },
+        "loyaltyPoints": {
+            "type": "integer",
+            "default": 0
+        }
+    }
+}

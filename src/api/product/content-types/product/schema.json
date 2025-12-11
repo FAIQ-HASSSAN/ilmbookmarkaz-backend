@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "product"
+    "displayName": "Product"
   },
   "options": {
     "draftAndPublish": true
@@ -12,20 +12,63 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
       "type": "text"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "originalPrice": {
+      "type": "decimal"
+    },
+    "sku": {
+      "type": "string",
+      "unique": true
+    },
+    "stock": {
+      "type": "integer",
+      "default": 0
     },
     "images": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-category.product-category",
+      "inversedBy": "products"
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 5,
+      "default": 0
+    },
+    "reviewCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "isFlashSale": {
+      "type": "boolean",
+      "default": false
+    },
+    "flashSaleEndTime": {
+      "type": "datetime"
+    },
+    "tags": {
+      "type": "json"
     },
     "discountPercentage": {
       "type": "string"

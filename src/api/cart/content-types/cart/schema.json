@@ -1,0 +1,29 @@
+{
+    "kind": "collectionType",
+    "collectionName": "carts",
+    "info": {
+        "singularName": "cart",
+        "pluralName": "carts",
+        "displayName": "Cart"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::ezimart-user.ezimart-user"
+        },
+        "items": {
+            "type": "component",
+            "repeatable": true,
+            "component": "cart.cart-item"
+        },
+        "sessionId": {
+            "type": "string",
+            "unique": true
+        }
+    }
+}

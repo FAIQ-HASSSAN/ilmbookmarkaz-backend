@@ -1,0 +1,28 @@
+{
+    "collectionName": "components_product_product_variants",
+    "info": {
+        "displayName": "Product Variant",
+        "description": "Product variant (size, color, etc.)"
+    },
+    "options": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "sku": {
+            "type": "string",
+            "unique": true
+        },
+        "price": {
+            "type": "decimal"
+        },
+        "stock": {
+            "type": "integer",
+            "default": 0
+        },
+        "attributes": {
+            "type": "json"
+        }
+    }
+}

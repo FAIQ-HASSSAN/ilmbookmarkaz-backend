@@ -1,0 +1,32 @@
+{
+    "kind": "collectionType",
+    "collectionName": "user_coupons",
+    "info": {
+        "singularName": "user-coupon",
+        "pluralName": "user-coupons",
+        "displayName": "User Coupon"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "user": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::ezimart-user.ezimart-user"
+        },
+        "coupon": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::coupon.coupon"
+        },
+        "used": {
+            "type": "boolean",
+            "default": false
+        },
+        "usedAt": {
+            "type": "datetime"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "collectionName": "components_cart_cart_items",
+    "info": {
+        "displayName": "Cart Item",
+        "description": "Item in shopping cart"
+    },
+    "options": {},
+    "attributes": {
+        "product": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::product.product"
+        },
+        "quantity": {
+            "type": "integer",
+            "required": true,
+            "min": 1,
+            "default": 1
+        },
+        "variant": {
+            "type": "string"
+        }
+    }
+}
