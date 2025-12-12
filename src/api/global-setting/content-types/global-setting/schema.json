@@ -1,27 +1,25 @@
 {
-    "kind": "singleType",
-    "collectionName": "global_settings",
-    "info": {
-        "singularName": "global-setting",
-        "pluralName": "global-settings",
-        "displayName": "Global Setting",
-        "description": "Global settings for the website"
+  "kind": "singleType",
+  "collectionName": "global_settings",
+  "info": {
+    "singularName": "global-setting",
+    "pluralName": "global-settings",
+    "displayName": "Global Setting"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "flashSaleEndTime": {
+      "type": "datetime"
     },
-    "options": {
-        "draftAndPublish": false
+    "enableFlashSale": {
+      "type": "boolean",
+      "default": true
     },
-    "pluginOptions": {},
-    "attributes": {
-        "flashSaleEndTime": {
-            "type": "datetime"
-        },
-        "enableFlashSale": {
-            "type": "boolean",
-            "default": true
-        },
-        "siteName": {
-            "type": "string",
-            "default": "Ilm Book Markaz"
-        }
+    "siteName": {
+      "type": "string"
     }
+  }
 }

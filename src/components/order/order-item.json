@@ -1,38 +1,38 @@
 {
-    "collectionName": "components_order_order_items",
-    "info": {
-        "displayName": "Order Item",
-        "description": "Individual item in an order"
+  "collectionName": "components_order_order_items",
+  "info": {
+    "displayName": "Order Item",
+    "description": "Individual item in an order"
+  },
+  "options": {},
+  "attributes": {
+    "productName": {
+      "type": "string",
+      "required": false
     },
-    "options": {},
-    "attributes": {
-        "productName": {
-            "type": "string",
-            "required": true
-        },
-        "productSku": {
-            "type": "string"
-        },
-        "quantity": {
-            "type": "integer",
-            "required": true,
-            "min": 1
-        },
-        "price": {
-            "type": "decimal",
-            "required": true
-        },
-        "variant": {
-            "type": "string"
-        },
-        "total": {
-            "type": "decimal",
-            "required": true
-        },
-        "product": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::product.product"
-        }
+    "productSku": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "integer",
+      "required": false,
+      "min": 1
+    },
+    "price": {
+      "type": "decimal",
+      "required": false
+    },
+    "variant": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal",
+      "required": false
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
     }
+  }
 }

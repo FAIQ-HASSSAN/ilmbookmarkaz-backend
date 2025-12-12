@@ -1,40 +1,40 @@
 {
-    "collectionName": "components_order_shipping_addresses",
-    "info": {
-        "displayName": "Shipping Address",
-        "description": "Shipping address for an order"
+  "collectionName": "components_order_shipping_addresses",
+  "info": {
+    "displayName": "Shipping Address",
+    "description": "Shipping address for an order"
+  },
+  "options": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": false
     },
-    "options": {},
-    "attributes": {
-        "firstName": {
-            "type": "string",
-            "required": true
-        },
-        "lastName": {
-            "type": "string",
-            "required": true
-        },
-        "phone": {
-            "type": "string",
-            "required": true
-        },
-        "email": {
-            "type": "email"
-        },
-        "address": {
-            "type": "text",
-            "required": true
-        },
-        "city": {
-            "type": "string",
-            "required": true
-        },
-        "postalCode": {
-            "type": "string"
-        },
-        "country": {
-            "type": "string",
-            "default": "Pakistan"
-        }
+    "lastName": {
+      "type": "string",
+      "required": false
+    },
+    "phone": {
+      "type": "string",
+      "required": false
+    },
+    "email": {
+      "type": "email"
+    },
+    "address": {
+      "type": "text",
+      "required": false
+    },
+    "city": {
+      "type": "string",
+      "required": false
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string",
+      "default": "Pakistan"
     }
+  }
 }

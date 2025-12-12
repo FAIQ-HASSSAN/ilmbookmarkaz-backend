@@ -646,13 +646,12 @@ export interface ApiEzimartUserEzimartUser extends Struct.CollectionTypeSchema {
 export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
   collectionName: 'global_settings';
   info: {
-    description: 'Global settings for the website';
     displayName: 'Global Setting';
     pluralName: 'global-settings';
     singularName: 'global-setting';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -668,8 +667,7 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    siteName: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Ilm Book Markaz'>;
+    siteName: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -767,9 +765,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
     notes: Schema.Attribute.Text;
-    orderNumber: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+    orderNumber: Schema.Attribute.String;
     paymentMethod: Schema.Attribute.Enumeration<
       ['cod', 'card', 'bank_transfer']
     > &
@@ -789,9 +785,9 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
       ['pending', 'processing', 'shipped', 'delivered', 'cancelled', 'refunded']
     > &
       Schema.Attribute.DefaultTo<'pending'>;
-    subtotal: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    subtotal: Schema.Attribute.Decimal;
     tax: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
-    total: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    total: Schema.Attribute.Decimal;
     trackingNumber: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

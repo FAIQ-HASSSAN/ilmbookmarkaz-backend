@@ -40,19 +40,18 @@ export interface OrderOrderItem extends Struct.ComponentSchema {
     displayName: 'Order Item';
   };
   attributes: {
-    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    price: Schema.Attribute.Decimal;
     product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
-    productName: Schema.Attribute.String & Schema.Attribute.Required;
+    productName: Schema.Attribute.String;
     productSku: Schema.Attribute.String;
     quantity: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
           min: 1;
         },
         number
       >;
-    total: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    total: Schema.Attribute.Decimal;
     variant: Schema.Attribute.String;
   };
 }
@@ -64,13 +63,13 @@ export interface OrderShippingAddress extends Struct.ComponentSchema {
     displayName: 'Shipping Address';
   };
   attributes: {
-    address: Schema.Attribute.Text & Schema.Attribute.Required;
-    city: Schema.Attribute.String & Schema.Attribute.Required;
+    address: Schema.Attribute.Text;
+    city: Schema.Attribute.String;
     country: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Pakistan'>;
     email: Schema.Attribute.Email;
-    firstName: Schema.Attribute.String & Schema.Attribute.Required;
-    lastName: Schema.Attribute.String & Schema.Attribute.Required;
-    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    firstName: Schema.Attribute.String;
+    lastName: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
     postalCode: Schema.Attribute.String;
   };
 }
