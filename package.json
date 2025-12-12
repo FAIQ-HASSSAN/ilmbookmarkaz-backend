@@ -18,7 +18,11 @@
     "@strapi/plugin-cloud": "5.31.3",
     "@strapi/plugin-users-permissions": "5.31.3",
     "@strapi/strapi": "5.31.3",
+    "axios": "^1.13.2",
+    "bcryptjs": "^3.0.3",
+    "jsonwebtoken": "^9.0.3",
     "node-fetch": "^3.3.2",
+    "nodemailer": "^7.0.11",
     "openai": "^6.10.0",
     "pg": "8.8.0",
     "react": "^18.0.0",
@@ -28,7 +32,11 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "typescript": "^5"

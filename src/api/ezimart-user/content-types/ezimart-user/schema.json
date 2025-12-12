@@ -20,8 +20,11 @@
     "phoneNumber": {
       "type": "string"
     },
-    "password": {
+    "passwords": {
       "type": "password"
+    },
+    "password": {
+      "type": "string"
     }
   }
 }
