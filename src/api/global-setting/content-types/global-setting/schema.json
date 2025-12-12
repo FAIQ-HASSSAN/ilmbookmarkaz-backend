@@ -1,0 +1,27 @@
+{
+    "kind": "singleType",
+    "collectionName": "global_settings",
+    "info": {
+        "singularName": "global-setting",
+        "pluralName": "global-settings",
+        "displayName": "Global Setting",
+        "description": "Global settings for the website"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "flashSaleEndTime": {
+            "type": "datetime"
+        },
+        "enableFlashSale": {
+            "type": "boolean",
+            "default": true
+        },
+        "siteName": {
+            "type": "string",
+            "default": "Ilm Book Markaz"
+        }
+    }
+}

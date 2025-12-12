@@ -503,7 +503,7 @@ export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     user: Schema.Attribute.Relation<
       'manyToOne',
-      'api::ezimart-user.ezimart-user'
+      'plugin::users-permissions.user'
     >;
   };
 }
@@ -535,6 +535,47 @@ export interface ApiCartCart extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::ezimart-user.ezimart-user'
     >;
+  };
+}
+
+export interface ApiCouponCoupon extends Struct.CollectionTypeSchema {
+  collectionName: 'coupons';
+  info: {
+    displayName: 'Coupon';
+    pluralName: 'coupons';
+    singularName: 'coupon';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    discountType: Schema.Attribute.Enumeration<['percentage', 'fixed']> &
+      Schema.Attribute.Required;
+    discountValue: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::coupon.coupon'
+    > &
+      Schema.Attribute.Private;
+    maxDiscount: Schema.Attribute.Decimal;
+    minPurchase: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usageLimit: Schema.Attribute.Integer;
+    usedCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    validFrom: Schema.Attribute.DateTime;
+    validUntil: Schema.Attribute.DateTime;
   };
 }
 
@@ -595,6 +636,108 @@ export interface ApiEzimartUserEzimartUser extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     password: Schema.Attribute.Password;
     phoneNumber: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
+  collectionName: 'global_settings';
+  info: {
+    description: 'Global settings for the website';
+    displayName: 'Global Setting';
+    pluralName: 'global-settings';
+    singularName: 'global-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enableFlashSale: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    flashSaleEndTime: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-setting.global-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    siteName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Ilm Book Markaz'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHeroSlideHeroSlide extends Struct.CollectionTypeSchema {
+  collectionName: 'hero_slides';
+  info: {
+    displayName: 'Hero Slide';
+    pluralName: 'hero-slides';
+    singularName: 'hero-slide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ctaLink: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hero-slide.hero-slide'
+    > &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.String & Schema.Attribute.Required;
+    subtitleColor: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNewsletterSubscriptionNewsletterSubscription
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'newsletter_subscriptions';
+  info: {
+    displayName: 'Newsletter Subscription';
+    pluralName: 'newsletter-subscriptions';
+    singularName: 'newsletter-subscription';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::newsletter-subscription.newsletter-subscription'
+    > &
+      Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -806,6 +949,78 @@ export interface ApiReviewReview extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
+  collectionName: 'transactions';
+  info: {
+    displayName: 'Transaction';
+    pluralName: 'transactions';
+    singularName: 'transaction';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::transaction.transaction'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    relatedOrder: Schema.Attribute.Relation<'manyToOne', 'api::order.order'>;
+    type: Schema.Attribute.Enumeration<
+      ['purchase', 'topup', 'refund', 'cashback']
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::ezimart-user.ezimart-user'
+    >;
+  };
+}
+
+export interface ApiUserCouponUserCoupon extends Struct.CollectionTypeSchema {
+  collectionName: 'user_coupons';
+  info: {
+    displayName: 'User Coupon';
+    pluralName: 'user-coupons';
+    singularName: 'user-coupon';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    coupon: Schema.Attribute.Relation<'manyToOne', 'api::coupon.coupon'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-coupon.user-coupon'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    used: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    usedAt: Schema.Attribute.DateTime;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::ezimart-user.ezimart-user'
+    >;
+  };
+}
+
 export interface ApiWalletWallet extends Struct.CollectionTypeSchema {
   collectionName: 'wallets';
   info: {
@@ -859,14 +1074,14 @@ export interface ApiWishlistWishlist extends Struct.CollectionTypeSchema {
       'api::wishlist.wishlist'
     > &
       Schema.Attribute.Private;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     user: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::ezimart-user.ezimart-user'
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
   };
 }
@@ -1384,12 +1599,18 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::address.address': ApiAddressAddress;
       'api::cart.cart': ApiCartCart;
+      'api::coupon.coupon': ApiCouponCoupon;
       'api::discount.discount': ApiDiscountDiscount;
       'api::ezimart-user.ezimart-user': ApiEzimartUserEzimartUser;
+      'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
+      'api::hero-slide.hero-slide': ApiHeroSlideHeroSlide;
+      'api::newsletter-subscription.newsletter-subscription': ApiNewsletterSubscriptionNewsletterSubscription;
       'api::order.order': ApiOrderOrder;
       'api::product-category.product-category': ApiProductCategoryProductCategory;
       'api::product.product': ApiProductProduct;
       'api::review.review': ApiReviewReview;
+      'api::transaction.transaction': ApiTransactionTransaction;
+      'api::user-coupon.user-coupon': ApiUserCouponUserCoupon;
       'api::wallet.wallet': ApiWalletWallet;
       'api::wishlist.wishlist': ApiWishlistWishlist;
       'plugin::content-releases.release': PluginContentReleasesRelease;

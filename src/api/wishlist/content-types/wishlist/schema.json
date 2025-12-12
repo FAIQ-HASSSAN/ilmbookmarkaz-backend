@@ -13,12 +13,12 @@
     "attributes": {
         "user": {
             "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::ezimart-user.ezimart-user"
+            "relation": "manyToOne",
+            "target": "plugin::users-permissions.user"
         },
         "products": {
             "type": "relation",
-            "relation": "oneToMany",
+            "relation": "manyToMany",
             "target": "api::product.product"
         }
     }

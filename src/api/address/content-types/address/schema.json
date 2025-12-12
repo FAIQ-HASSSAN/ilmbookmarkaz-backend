@@ -14,7 +14,7 @@
         "user": {
             "type": "relation",
             "relation": "manyToOne",
-            "target": "api::ezimart-user.ezimart-user"
+            "target": "plugin::users-permissions.user"
         },
         "label": {
             "type": "string",
