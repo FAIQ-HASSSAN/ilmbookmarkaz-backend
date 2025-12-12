@@ -25,6 +25,12 @@
     },
     "password": {
       "type": "string"
+    },
+    "googleLoginId": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
     }
   }
 }

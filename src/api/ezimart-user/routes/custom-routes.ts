@@ -10,6 +10,15 @@ export default {
           policies: [],
         },
       },
+      {
+        method: 'GET',
+        path: '/loginOAuth', // Corrected route
+        handler: 'ezimart-user.loginOAuth',
+        config: {
+          auth: false, // No auth required
+          policies: [],
+        },
+      },
     ],
   };
   

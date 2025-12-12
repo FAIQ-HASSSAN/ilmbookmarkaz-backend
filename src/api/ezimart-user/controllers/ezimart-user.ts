@@ -6,6 +6,10 @@ import { factories } from '@strapi/strapi';
 import { Context } from 'koa';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { OAuth2Client } from 'google-auth-library';
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
+const googleSecretId = process.env.GOOGLE_SECRET;
+
 
 export default factories.createCoreController('api::ezimart-user.ezimart-user', {
     async login(ctx: Context) {
@@ -49,4 +53,52 @@ export default factories.createCoreController('api::ezimart-user.ezimart-user', 
             ctx.internalServerError('Error during sign-in');
         }
     },
+    async loginOAuth(ctx) {
+        try {
+            const googleClientId = process.env.GOOGLE_CLIENT_ID;
+            const idToken = ctx.request.query.id_token as string | undefined;
+
+            if (!idToken) {
+                return ctx.badRequest("Missing id_token");
+            }
+            const client = new OAuth2Client(googleClientId);
+            const ticket = await client.verifyIdToken({
+                idToken,
+                audience: googleClientId,
+            });
+            const payload = ticket.getPayload();
+            if (!payload) {
+                return ctx.badRequest("Invalid Google token");
+            }
+            const googleId = payload.sub;
+            const email = payload.email;
+            const emailVerified = payload.email_verified;
+            if (!emailVerified) {
+                return ctx.badRequest("Email not verified by Google");
+            }
+            let user = await strapi.db.query("api::ezimart-user.ezimart-user").findOne({
+                where: { googleLoginId:googleId },
+            });
+            if (!user) {
+                user =  await strapi.entityService.create('api::ezimart-user.ezimart-user', {
+                    data: {
+                        googleLoginId: googleId,
+                        email,
+                        username: email.split("@")[0],
+                        provider: "google",
+                    },
+                });
+            }
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'default_secret', {
+                expiresIn: '48h',
+            });
+            return {
+                jwt: token,
+                user,
+            };
+        } catch (err) {
+            console.error("Google Login Error:", err);
+            return ctx.internalServerError("Google login failed");
+        }
+    }
 });

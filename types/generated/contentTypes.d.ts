@@ -478,6 +478,7 @@ export interface ApiEzimartUserEzimartUser extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.String;
+    googleLoginId: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -488,6 +489,7 @@ export interface ApiEzimartUserEzimartUser extends Struct.CollectionTypeSchema {
     password: Schema.Attribute.String;
     passwords: Schema.Attribute.Password;
     phoneNumber: Schema.Attribute.String;
+    provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
